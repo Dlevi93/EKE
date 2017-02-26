@@ -1,0 +1,155 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="theme-color" content="#ffffff">
+    <title>@ViewData["Title"] - EKE</title>
+    <environment names="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400italic%7CRoboto:400,700%7CDroid+Serif">
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu+Condensed" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="~/css/Layout/style.css" />
+        <link rel="stylesheet" href="~/css/Layout/style-dark.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="~/css/Layout/animate.css" />
+    </environment>
+    <environment names="Staging,Production">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400italic%7CRoboto:400,700%7CDroid+Serif">
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu+Condensed" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="~/css/Layout/style.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/Layout/style-dark.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/Layout/animate.css" />
+    </environment>
+    <script type="text/javascript">
+        localStorage.setItem("siteRoot", "@Url.Action("", null, null, "http")")
+        //Error or success messages
+        @if (TempData["Message"] != null)
+        {
+            <text>var ServerMessage = '@TempData["Message"]';</text>
+            <text>var ServerMessageType = '@TempData["ServerMessageType"]';</text>
+        }
+    </script>
+    <!-- Facebook Pixel Code -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            }; if (!f._fbq) f._fbq = n;
+            n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s)
+        }(window,
+        document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+
+        fbq('init', '1590990771197260');
+        fbq('track', "PageView");
+        fbq('track', 'ViewContent');
+    </script>
+    <noscript>
+        <img height="1" width="1" style="display:none"
+             src="https://www.facebook.com/tr?id=1590990771197260&ev=PageView&noscript=1" />
+    </noscript>
+    <!-- End Facebook Pixel Code -->
+    @Html.ApplicationInsightsJavaScript(TelemetryConfiguration)
+</head>
+<body>
+    <header id="top" class="navbar navbar-fixed-top" role="banner">
+        <div class="container">
+            <div class="inner">
+                <div class="site-title">
+                    <h1><a asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/logo11b.png" alt="EKE" class="img-responsive img-logo" width="200"></a></h1>
+                    <a href="#site-menu" class="site-menu-toggle">
+                        <span class="sr-only">Toggle navigation</span>
+                        <em class="first"></em><em class="middle"></em><em class="last"></em>
+                    </a>
+                </div>
+
+                <div id="site-menu">
+                    <nav>
+                        <ul>
+                            @*current-menu-item*@
+                            <li class=""><a asp-controller="Home" asp-action="About">Despre</a></li>
+                            <li class=""><a asp-controller="Marathon" asp-action="Exposition">Expoziții</a></li>
+                            <li class=""><a asp-controller="Marathon" asp-action="Workshop">Workshop-uri</a></li>
+                            <li class=""><a asp-controller="Marathon" asp-action="Photographic">Maraton de fotografie</a></li>
+                            <li class=""><a asp-controller="Account" asp-action="Register">Înscrieri</a></li>
+                            <li class=""><a asp-controller="Blog" asp-action="Index">Blog</a></li>
+                            <li class=""><a asp-controller="Home" asp-action="Partners">Parteneri</a></li>
+                            <li class=""><a asp-controller="Home" asp-action="Contact">Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+            </div>
+        </div>
+    </header>
+    <div style="padding-top:100px;">
+        @RenderBody()
+    </div>
+    <footer id="footer" role="contentinfo">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="box white-bg">
+                        <h5 class="photo-lett">Abonează-te la Photoletter </h5>
+                        <div class="sep red"></div>
+                        <div class="margin-1"></div>
+                        <label for="name" class="sr-only">Nume</label>
+                        <input type="text" class="underline" name="name" id="news-name" placeholder="Nume..." required="">
+                        <p class="hidden input-validation" id="news-name-valid">Te rugăm să completezi numele.</p>
+                        <label for="email" class="sr-only">Email</label>
+                        <input type="email" class="underline" name="email" id="news-email" placeholder="Adresa de email..." required="">
+                        <p class="input-validation hidden" id="news-email-valid">Adresa de e-mail nu este validă.</p>
+                        <input class="float-left" type="submit" id="send-newsletter" onclick="Main.NewsLetterSubscribe()" value="Trimite">
+                    </div>
+                </div>
+                <div class="col-sm-8">
+                    <p>
+                        <a asp-controller="Home" asp-action="Index" class="mini-logo img-responsive"><img src="~/images/logo11b.png" alt="EKE" width="175"></a>
+                    </p>
+                    <p>&copy; 2016 Photo Marathon. Toate drepturile rezervate.</p>
+                    <p>
+                        <a href="https://www.facebook.com/EKE.ro/" target="_blank" class="social-link"><i class="fa fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/EKE.ro/" target="_blank" class="social-link"><i class="fa fa-instagram"></i></a>
+                        <a href="https://ro.pinterest.com/EKE/" target="_blank" class="social-link"><i class="fa fa-pinterest"></i></a>
+                        <a href="https://www.youtube.com/channel/UC7xgv1Th5Fd3YbrEYqzAoyA" target="_blank" class="social-link"><i class="fa fa-youtube"></i></a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <environment names="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/lib/owl.carousel/owl.carousel.min.js"></script>
+        <script src="~/js/Layout/site.js" asp-append-version="true"></script>
+        <script src="~/js/Layout/jquery.noty.packaged.js" asp-append-version="true"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
+        </script>
+        <script src="~/lib/owl.carousel/owl.carousel.min.js" asp-append-version="true"></script>
+        <script src="~/js/Layout/site.js" asp-append-version="true"></script>
+        <script src="~/js/Layout/jquery.noty.packaged.js" asp-append-version="true"></script>
+    </environment>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

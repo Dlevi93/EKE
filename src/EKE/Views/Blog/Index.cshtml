@@ -1,0 +1,77 @@
+﻿@model EKE.Models.BlogViewModel
+@{
+    ViewData["Title"] = "Blog";
+    var counter = 1;
+}
+
+<main id="content" role="main">
+    <div class="container container-masonry">
+        <div class="inner">
+            <div class="row">
+                <div class="col-sm-9">
+                    <div class="row">
+                        @foreach (var blogItem in Model.Articles)
+                        {
+                            @Html.Partial("_Article_" + counter, blogItem)
+                            if (counter == 4)
+                            {
+                                <div class="clear"></div>
+                            }
+                            counter++;
+                        }
+
+                        <div class="box col-sm-12 text-center">
+                            <div class="margin-2"></div>
+                            @for (int i = 1; i <= Model.Pages; i++)
+                            {
+                                <a href="~/blog?p=@i&y=@Model.SelectedYear&m=@Model.SelectedMonth" class="button @(i == Model.CurrentPage ? "filled":"")">@i</a>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="widget widget_search">
+                        <form class="searchform" method="get" action="search.html">
+                            <input type="text" value="" name="s" placeholder="Search…">
+                            <input type="submit" value="">
+                        </form>
+                    </div>
+
+                    <div class="widget">
+                        <h6 class="title">Despre noi</h6>
+                        <p class="no-bottom">PHOTO MARATHON este singurul eveniment din România care oferă atât fotografilor amatori, cât şi celor profesionişti, oportunitatea de a experimenta arta fotografică, într-o manieră inedită, punându-le la încercare imaginaţia şi creativitatea.</p>
+                    </div>
+                    <div class="widget widget_archives">
+                        <h6 class="title">Archives</h6>
+                        <ul class="fa-ul">
+                            @foreach (var datef in Model.DateFilter)
+                            {
+                                <li class="cat-item @(datef.Year == Model.SelectedYear ? "current-cat":"")">
+                                    <i class="fa-li fa fa-caret-down fa-colored"></i><a href="~/blog?p=@Model.CurrentPage&y=@datef.Year">@datef.Year</a>
+                                    <ul class="fa-ul">
+                                        @foreach (var month in datef.Months)
+                                        {
+                                            if (month.Items > 0)
+                                            {
+                                                <li class="cat-item @(month.Month == Model.SelectedMonth ? "current-cat" : "")"><i class="fa-li fa fa-caret-right"></i><a href="~/blog?p=@Model.CurrentPage&y=@datef.Year&m=@month.Month">@month.MonthName</a> (@month.Items)</li>
+                                            }
+                                        }
+                                    </ul>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<link rel="stylesheet" href="~/css/Blog/blog.css" />
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            Main.SetActiveMenuItem(6);
+        })
+    </script>
+}

@@ -1,0 +1,205 @@
+﻿@model string
+@{
+    ViewData["Title"] = "Pagina principală";
+}
+
+<environment names="Development">
+    <link rel="stylesheet" href="~/css/Index/index.css" />
+</environment>
+<environment names="Staging,Production">
+    <link rel="stylesheet" href="~/css/Index/index.css" />
+</environment>
+
+<main id="content" role="main">
+    <script type="text/javascript">
+        //Error or success messages
+        @*@if (Model != null)
+     {
+         <text>var ServerMessage = '@TempData["Message"]';</text>
+         <text>var ServerMessageType = '@TempData["ServerMessageType"]';</text>
+     }*@
+    </script>
+    <div class="container container-masonry">
+        <div class="inner">
+            <div class="row">
+                <div class="box col-sm-4 col-md-6">
+                    <div class="thumb featured">
+                        <div class="photo">
+                            <a asp-controller="Home" asp-action="About">
+                                <img src="~/images/about.jpg" alt="" width="715" height="556" style="height:556px;">
+                                <span class="info">
+                                    <strong class="big-title">Photo Marathon</strong><span class="excerpt">
+                                        <strong>Esti pasionat de fotografie?</strong><br />
+                                        PHOTO MARATHON este singurul eveniment din România care oferă fotografilor amatori și profesioniști oportunitatea de a experimenta arta fotografică în medii neconvenționale, beneficiind de o experiență completă.
+                                        <br />
+                                        <br />
+                                        <strong>Pune arta fotografică în mișcare alături de noi!</strong><br />
+                                        Evenimentul desfășurat pe parcursul a 4 zile pune la dispoziția pasionaților de fotografie un maraton fotografic, unic în zona Transilvaniei, cu premii în valoare de 6.000 lei.
+                                        Alături de competiție, cei interesați pot participa și la maratonul de expoziții și de workshop-uri.
+                                        <br />
+
+                                    </span><em class="arrow-right"></em>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box col-xs-6 col-sm-4 col-md-3">
+                    <div class="thumb">
+                        <div class="photo">
+                            <a asp-controller="Marathon" asp-action="Photographic">
+                                <img src="~/images/about2.jpg" alt="" width="434" height="434">
+                                <span class="info"><strong class="title">Maraton de fotografie</strong><span class="excerpt">8 ore, 4 teme, 2 categorii distincte și premii în valoare de 6.000 lei</span><em class="arrow-right"></em></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box col-xs-6 col-sm-4 col-md-3">
+                    <div class="thumb">
+                        <div class="photo">
+                            <a asp-controller="Marathon" asp-action="Workshop">
+                                <img src="~/images/workshop.jpg" alt="" width="434" height="434">
+                                <span class="info"><strong class="title">Workshop-uri</strong><span class="excerpt">Află mai multe despre ce înseamnă industria foto la ateliere pentru fotografi amatori și profesioniști</span><em class="arrow-right"></em></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box col-xs-6 col-sm-4 col-md-3">
+                    <div class="thumb">
+                        <div class="photo">
+                            <a asp-controller="Account" asp-action="Register">
+                                <img src="~/images/signup.JPG" alt="" width="434" height="434">
+                                <span class="info"><strong class="title">Înscrie-te</strong><span class="excerpt">Pune arta fotografică în mişcare. Intră în competiție acum!</span><em class="arrow-right"></em></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box col-xs-6 col-sm-4 col-md-3">
+                    <div class="thumb">
+                        <div class="photo">
+                            <a asp-controller="Marathon" asp-action="Exposition">
+                                <img src="~/images/expo.JPG" alt="" width="434" height="434">
+                                <span class="info"><strong class="title">Expoziții</strong><span class="excerpt">4 locuri, 4 fotografi, 4 teme și 4 fundaluri sonore specifice</span><em class="arrow-right"></em></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box col-xs-6 col-sm-4 col-md-3">
+                    <div class="thumb">
+
+                        <div id="mini-clndr"></div>
+
+                        <div id="events" style="display:none;margin-bottom:0px;position: absolute;top: 0;">
+                            @*class="panel panel-default"*@
+                            @*<div class="panel-heading"><i class="fa fa-times text-right" onclick="Main.BackToCalendar()" aria-hidden="true"></i> Evenimente: </div>
+                                <div class="panel-body" style="min-height:213px;">
+                                    <ul style="font-size:13px;">
+                                        <li>Expoziții (13-16 octombrie)</li>
+                                        <li>Workshop-uri (14 octombrie)</li>
+                                        <li>Maraton Foto (15 octombrie)</li>
+                                        <li>Jurizare & premiere (16 octombrie)</li>
+                                    </ul>
+                                </div>*@
+
+                            <div id="mini-clndr" style="width:260px">
+                                <div class="clndr">
+                                    <div class="controls">
+                                        <div class="clndr-previous-button" onclick="Main.BackToCalendar()"><i class="fa fa-times text-right" aria-hidden="true"></i></div><div class="month">Octombrie:</div>
+                                    </div>
+                                    <div class="days-container">
+                                        <div class="days">
+                                            <div class="headers">
+                                                <div class="day-header" style="width:100%;height:21px;"><span class="text-center">Evenimente:</span></div>
+                                            </div>
+                                            <br />
+                                            <ul style="font-size:13px;">
+                                                <li>Expoziții (13-16 octombrie)</li>
+                                                <li>Workshop-uri (14 octombrie)</li>
+                                                <li>Maraton Foto (15 octombrie)</li>
+                                                <li>Jurizare & premiere (16 octombrie)</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <script id="calendar-template" type="text/template">
+                            <div class="controls">
+                                <div class="clndr-previous-button">&lsaquo;</div><div class="month"><%= month %></div><div class="clndr-next-button">&rsaquo;</div>
+                            </div>
+                            <div class="days-container">
+                                <div class="days">
+                                    <div class="headers">
+                                        <% _.each(daysOfTheWeek, function(day) { %><div class="day-header"><%= day %></div><% }); %>
+                                    </div>
+                                    <% _.each(days, function(day) { %><div class="<%= day.classes %>" id="<%= day.id %>"><%= day.day %></div><% }); %>
+                                </div>
+                            </div>
+                        </script>
+                    </div>
+                </div>
+
+                <div class="box col-xs-6 col-sm-4 col-md-3">
+                    <div class="thumb">
+                        <div class="photo">
+                            <a asp-controller="Blog" asp-action="Index">
+                                <img src="~/images/blog.JPG" alt="" width="434" height="434">
+                                <span class="info"><strong class="title">Blog</strong><span class="excerpt">Povești prin obiectivul Photo Marathon</span><em class="arrow-right"></em></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box col-xs-6 col-sm-4 col-md-3">
+                    <div class="thumb">
+                        <div class="photo">
+                            <a asp-controller="Home" asp-action="Partners">
+                                <img src="~/images/partners.JPG" alt="" width="434" height="434">
+                                <span class="info"><strong class="title">Parteneri</strong><span class="excerpt">Află cine susține Photo Marathon</span><em class="arrow-right"></em></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box col-xs-6 col-sm-4 col-md-3">
+                    <div class="thumb">
+                        <div class="photo">
+                            <a asp-controller="Home" asp-action="Contact">
+                                <img src="~/images/contact.JPG" alt="" width="434" height="434">
+                                <span class="info"><strong class="title">Contact</strong><span class="excerpt">Sugestii și recomandări? Scrie-ne</span><em class="arrow-right"></em></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</main>
+
+@section scripts {
+    <environment names="Development">
+        <script src="~/js/Index/Init/moment.js" asp-append-version="true"></script>
+        <script src="~/js/Index/Init/underscore.js" asp-append-version="true"></script>
+        <script src="~/js/Index/Init/clndr.js" asp-append-version="true"></script>
+        <script src="~/js/Index/Page/index.js" asp-append-version="true"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="~/js/Index/Init/moment.js" asp-append-version="true"></script>
+        <script src="~/js/Index/Init/underscore.js" asp-append-version="true"></script>
+        <script src="~/js/Index/Init/clndr.js" asp-append-version="true"></script>
+        <script src="~/js/Index/Page/index.js" asp-append-version="true"></script>
+    </environment>
+    <script>
+        $(document).ready(function () {
+            Main.InitCalendar();
+        })
+    </script>
+}
