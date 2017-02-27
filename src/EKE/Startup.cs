@@ -47,11 +47,7 @@ namespace EKE
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
             services.AddTransient<IUnitOfWork, UnitOfWork>();
-            services.AddTransient<INewsLetterService, NewsLetterService>();
             services.AddTransient<IGeneralService, GeneralService>();
-            services.AddTransient<IAccountService, AccountService>();
-            services.AddTransient<IBlogService, BlogService>();
-            services.AddTransient<IContactService, ContactService>();
             //Repositories
             services.AddTransient<IEntityBaseRepository<Newsletter>, EntityBaseRepository<Newsletter>>();
             services.AddTransient<IEntityBaseRepository<WorkShop>, EntityBaseRepository<WorkShop>>();
@@ -107,6 +103,7 @@ namespace EKE
                 AutomaticAuthenticate = true,
                 AutomaticChallenge = true
             });
+
             var supportedCultures = new[]
               {
                   new CultureInfo("ro-RO")

@@ -2,8 +2,6 @@
 
 namespace EKE.Service.Services
 {
-
-
     public abstract class BaseService : IBaseService
     {
         #region Properties

@@ -1,11 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using EKE.Data.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using LinqKit.Core;
 using EKE.Data.Entities.Base;
+using LinqKit;
 
 namespace EKE.Data.Repository
 {
