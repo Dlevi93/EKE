@@ -1,15 +1,18 @@
 ﻿using EKE.Data;
 using EKE.Data.Entities;
+using EKE.Data.Entities.Identity;
 using EKE.Data.Infrastructure;
 using EKE.Service.Services;
 using EKE.Service.Services.Admin;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using NonFactors.Mvc.Grid;
 using System;
 
 namespace EKE_Admin.Web
@@ -57,9 +60,11 @@ namespace EKE_Admin.Web
             services.AddTransient<IGeneralService, GeneralService>();
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
+            services.AddTransient<UserSeed>();
             //Add Services
             services.AddMvc();
             services.AddSession();
+            services.AddMvcGrid();
         }
 
         private void setupServices(IServiceCollection services)
@@ -88,7 +93,7 @@ namespace EKE_Admin.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, UserSeed seeder)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -122,6 +127,8 @@ namespace EKE_Admin.Web
                 AutomaticAuthenticate = true,
                 AutomaticChallenge = true
             });
+
+            seeder.SeedAdminUser();
         }
     }
 }

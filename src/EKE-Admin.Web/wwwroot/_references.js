@@ -1,4 +1,5 @@
 ﻿/// <autosync enabled="true" />
+/// <reference path="js/mvcgrid/mvc-grid.js" />
 /// <reference path="js/site.js" />
 /// <reference path="lib/admin-lte/dist/js/app.js" />
 /// <reference path="lib/bootstrap/dist/js/bootstrap.js" />

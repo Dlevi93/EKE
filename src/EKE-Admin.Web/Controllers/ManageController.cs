@@ -7,6 +7,8 @@ using Microsoft.Extensions.Logging;
 using EKE.Data.Entities;
 using EKE.Service.Services.Admin;
 using EKE.Data.Entities.Identity.ManageViewModels;
+using Microsoft.ApplicationInsights.Extensibility.Implementation;
+using EKE.Data;
 
 namespace EKE_Admin.Web.Controllers
 {
@@ -325,7 +327,6 @@ namespace EKE_Admin.Web.Controllers
             var message = result.Succeeded ? ManageMessageId.AddLoginSuccess : ManageMessageId.Error;
             return RedirectToAction(nameof(ManageLogins), new { Message = message });
         }
-
         #region Helpers
 
         private void AddErrors(IdentityResult result)

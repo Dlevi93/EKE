@@ -124,11 +124,24 @@ namespace EKE_Admin.Web.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [ValidateAntiForgeryToken]
+        public IActionResult LogOff()
+        {
+            _signInManager.SignOutAsync();
+            _logger.LogInformation(4, "User logged out.");
+            return RedirectToAction(nameof(HomeController.Index), "Home");
+        }
+
         //
         // POST: /Account/LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> LogOff()
+        public async Task<IActionResult> LogOffAsync()
         {
             await _signInManager.SignOutAsync();
             _logger.LogInformation(4, "User logged out.");
@@ -434,6 +447,38 @@ namespace EKE_Admin.Web.Controllers
             }
         }
 
+        /// <summary>
+        /// Return if not authorized
+        /// </summary>
+        /// <param name="returnUrl"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult AccessDenied(string returnUrl = null)
+        {
+            ViewData["ReturnUrl"] = returnUrl;
+            return View();
+        }
+
+        /// <summary>
+        /// Manage registered users
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Authorize(Roles = "superadmin")]
+        public async Task<IActionResult> ManageUsers()
+        {
+            var users = _userManager.Users.ToList();
+
+            foreach (var item in users)
+            {
+                var roles = await _userManager.GetRolesAsync(item);
+                item.RoleAssigned = roles.Aggregate((i, j) => i + " , " + j);
+            }
+
+            return View(users);
+        }
         #region Helpers
 
         private void AddErrors(IdentityResult result)
